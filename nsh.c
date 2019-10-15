@@ -9,17 +9,13 @@ char buffer[MAX_ARG];
 char * args[MAX_ARG];
 int args_length = 0;
 
-struct cmd {
-
-};
-
 // Runs a command, args[0] = application
 void run_command(char ** args)
 {
     int pid = fork();
 
     if (pid > 0)
-        wait();
+        wait(0);
     else if(pid == 0) {
         exec(args[0], args);
         fprintf(2, "Error: Unknown command <%s>.\n", args[0]);
@@ -76,5 +72,5 @@ int main() {
         printf("@ ");
     }
 
-    exit();
+    exit(0);
 }
